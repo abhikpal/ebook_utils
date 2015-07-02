@@ -76,6 +76,6 @@ And yes, it is stated in the LICENSE file, but I should reiterate, "If you blow 
 
 ### Contribute
 
-If you think this project is something fun to work on, fork this repo and submit pull requests. Writing some documentation would also be a good idea. My brain malfunctions at times, so if you find typos correct them!
+If you think this project is something fun to work on, fork this repo and submit pull requests. Writing some documentation would also be a good idea. My brain malfunctions at times, so if you find tpyos correct them!
 
 If you want to contribute but don't know how to use GitHub, you can reach me at `abhikp@muwci.net`
