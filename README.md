@@ -28,26 +28,40 @@ And yes, it is stated in the LICENSE file, but I should reiterate, "If you blow 
 
 ### Basis Usage
 
-1. Clone the repo:
+<ol>
+<li>
+Clone the repo:
 ```Shell
 ~ $ git clone https://github.com/abhikpal/ebook_utils.git
 ```
-2. Chnage to the directory contining the files.
+</li>
+
+<li>
+Chnage to the directory contining the files.
 ```Shell
 ~ $ cd ebook_utils
 ```
-3. Connect your Kindle and run the `get_clippings.sh` script.
+</li>
+
+<li>
+Connect your Kindle and run the `get_clippings.sh` script.
 ```Shell
 ~/ebook_utils $ chmod +x get_clippings.sh
 ~/ebook_utils $ ./get_clippings.sh
 ```
-4. Edit the end of the python file (`book_progress.py`) to add the book you want to get the statistics for.
+</li>
+
+<li>
+Edit the end of the python file (`book_progress.py`) to add the book you want to get the statistics for.
 ```python
 if __name__ == '__main__':
     ## Enter your book name here:
     plot_book_stats('book name here')
 ```
-5. To get a list of books that you can get information for, run python in interactive mode, import the file into it and run `get_book_list()`
+</li>
+
+<li>
+To get a list of books that you can get information for, run python in interactive mode, import the file into it and run `get_book_list()`
 ```Shell
 ~/ebook_utils $ python
 ```
@@ -56,12 +70,21 @@ and then inside the python interpreter:
 >>> from book_progress import *
 >>> get_book_list() # This will give you a list of all the books you have information about.
 ```
-6. Run the python file.
+</li>
+
+<li>
+Run the python file.
 ```Shell
 ~/ebook_utils $ python book_progress.py
 ```
-7. If the universe decides to cooperate with you, you should see a window similar to the one shown below.
+</li>
+
+<li>
+If the universe decides to cooperate with you, you should see a window similar to the one shown below.
 <img src="./readme_files/sample_run.png" width="100%" alt="Sample run screenshot">
+</li>
+</ol>
+
 
 ### Requirements
 
