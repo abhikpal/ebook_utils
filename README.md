@@ -28,63 +28,46 @@ And yes, it is stated in the LICENSE file, but I should reiterate, "If you blow 
 
 ### Basis Usage
 
-<ol>
-<li>
-Clone the repo:
-```Shell
-~ $ git clone https://github.com/abhikpal/ebook_utils.git
-```
-</li>
+1. Clone the repo:
+    ```Shell
+    ~ $ git clone https://github.com/abhikpal/ebook_utils.git
+    ```
 
-<li>
-Chnage to the directory contining the files.
-```Shell
-~ $ cd ebook_utils
-```
-</li>
+2. Change to the directory containing the files.
+    ```Shell
+    ~ $ cd ebook_utils
+    ```
 
-<li>
-Connect your Kindle and run the `get_clippings.sh` script.
-```Shell
-~/ebook_utils $ chmod +x get_clippings.sh
-~/ebook_utils $ ./get_clippings.sh
-```
-</li>
+3. Connect your Kindle and run the `get_clippings.sh` script.
+    ```Shell
+    ~/ebook_utils $ chmod +x get_clippings.sh
+    ~/ebook_utils $ ./get_clippings.sh
+    ```
 
-<li>
-Edit the end of the python file (`book_progress.py`) to add the book you want to get the statistics for.
-```python
-if __name__ == '__main__':
-    ## Enter your book name here:
-    plot_book_stats('book name here')
-```
-</li>
+4. Edit the end of the python file (`book_progress.py`) to add the book you want to get the statistics for.
+    ```python
+    if __name__ == '__main__':
+        ## Enter your book name here:
+        plot_book_stats('book name here')
+    ```
 
-<li>
-To get a list of books that you can get information for, run python in interactive mode, import the file into it and run `get_book_list()`
-```Shell
-~/ebook_utils $ python
-```
-and then inside the python interpreter:
-```python
->>> from book_progress import *
->>> get_book_list() # This will give you a list of all the books you have information about.
-```
-</li>
+5. To get a list of books that you can get information for, run python in interactive mode, import the file into it and run `get_book_list()`
+    ```Shell
+    ~/ebook_utils $ python
+    ```
+    and then inside the python interpreter:
+    ```python
+    >>> from book_progress import *
+    >>> get_book_list() # This will give you a list of all the books you have information about.
+    ```
 
-<li>
-Run the python file.
-```Shell
-~/ebook_utils $ python book_progress.py
-```
-</li>
+6. Run the python file.
+    ```Shell
+    ~/ebook_utils $ python book_progress.py
+    ```
 
-<li>
-If the universe decides to cooperate with you, you should see a window similar to the one shown below.
-<img src="./readme_files/sample_run.png" width="100%" alt="Sample run screenshot">
-</li>
-</ol>
-
+7. If the universe decides to cooperate with you, you should see a window similar to the one shown below.
+    <img src="./readme_files/sample_run.png" width="100%"" alt="sample run screenshot">
 
 ### Requirements
 
