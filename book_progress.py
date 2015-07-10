@@ -3,6 +3,7 @@ import datetime
 import pylab
 from scipy.stats import gaussian_kde
 
+
 def get_book_list(filename='clippings.txt'):
     """
     Returns a list of all the books for which record can be found in the
@@ -32,6 +33,7 @@ def get_book_list(filename='clippings.txt'):
 
     return book_list
 
+
 def get_book_info(book_name, book_len=None, filename='clippings.txt'):
     """
     returns arrays and lists containing information about the book.
@@ -54,9 +56,9 @@ def get_book_info(book_name, book_len=None, filename='clippings.txt'):
     assert book_name in get_book_list(filename), "Requested book not found."
 
     time_stamp_dict = {}
-    
+
     book_file = open(filename, 'r')
-    
+
     while True:
         try:
             book_line = book_file.next().strip()
@@ -64,23 +66,25 @@ def get_book_info(book_name, book_len=None, filename='clippings.txt'):
                 current_book = re.search('(.*?)\ \(.*?\)', (book_file.next()))
                 if current_book.group(1) == book_name:
                     info_ln = book_file.next()
-                    info = re.search('- (\w).*? (\d{1,}).*? \| .*?, (.*?)\n', info_ln)
+                    info = re.search(
+                        '- (\w).*? (\d{1,}).*? \| .*?, (.*?)\n', info_ln)
                     loc_type = info.group(1)
                     location = int(info.group(2))
                     time_stamp = time_stamp_formatter(info.group(3))
                     time_stamp_dict[time_stamp] = (location, loc_type)
         except StopIteration:
             break
-    
+
     times = [tm for tm in sorted(time_stamp_dict.keys())]
     locs = [(time_stamp_dict[tm][0]) for tm in sorted(time_stamp_dict.keys())]
     types = [(time_stamp_dict[tm][1]) for tm in sorted(time_stamp_dict.keys())]
     if book_len == None:
         book_len = max(locs)
 
-    locs = pylab.array(locs)/float(book_len)
-    
+    locs = pylab.array(locs) / float(book_len)
+
     return times, locs, types
+
 
 def time_stamp_formatter(raw_stamp):
     """
@@ -92,11 +96,10 @@ def time_stamp_formatter(raw_stamp):
     output:
         datetime: a datetime object made using the raw_stamp
     """
-    
-    month_to_num = {"January": 1, "February": 2, "March":3, "April":4, "May":5,
-                    "June":6, "July":5, "August":8, "September":9,
-                    "October":10, "November":11, "December":12}
-    
+
+    month_to_num = {"January": 1, "February": 2, "March": 3, "April": 4, "May": 5,
+                    "June": 6, "July": 5, "August": 8, "September": 9,
+                    "October": 10, "November": 11, "December": 12}
 
     kindle_date_format = '(\S+) (\d{1,}), (\d{1,}), (\d{1,}):(\d{1,}) (\S+)'
     formatted_stamp = re.search(kindle_date_format, raw_stamp)
@@ -115,6 +118,7 @@ def time_stamp_formatter(raw_stamp):
 
     return datetime.datetime(year, month, day, hour, minute)
 
+
 def plot_book_stats(book_name, book_len=None, filename='clippings.txt'):
     """
     Plots the statistics for the required book. Uses two sub functions to
@@ -125,7 +129,7 @@ def plot_book_stats(book_name, book_len=None, filename='clippings.txt'):
         book_len: Length of the book, defaults to None
         filename: clippings filename (defaults to 'clippings.txt')
     """
-    
+
     def plot_progress(times, locs):
         """
         Plots the locations vs. time graph for the book.
@@ -161,10 +165,10 @@ def plot_book_stats(book_name, book_len=None, filename='clippings.txt'):
         """
 
         density = gaussian_kde(locs)
-        xs = pylab.linspace(0,1,1000)
-        density.covariance_factor = lambda : .10
+        xs = pylab.linspace(0, 1, 1000)
+        density.covariance_factor = lambda: .10
         density._compute_covariance()
-        pylab.plot(xs,density(xs), 'r')
+        pylab.plot(xs, density(xs), 'r')
         pylab.xlim([0, 1])
         # pylab.xlabel('Book locations (in %)')
         # pylab.ylabel('Freq.')
@@ -183,7 +187,7 @@ def plot_book_stats(book_name, book_len=None, filename='clippings.txt'):
         """
 
         sep_values = {}
-        
+
         for i in range(len(types)):
             try:
                 sep_values[types[i]].append(locs[i])
@@ -191,14 +195,14 @@ def plot_book_stats(book_name, book_len=None, filename='clippings.txt'):
                 sep_values[types[i]] = [locs[i]]
 
         densities = []
-        colors = {'H':'r', 'B':'g', 'N':'b'}
+        colors = {'H': 'r', 'B': 'g', 'N': 'b'}
 
         for k in sep_values.keys():
             density = gaussian_kde(sep_values[k])
-            density.covariance_factor = lambda : .10
+            density.covariance_factor = lambda: .10
             density._compute_covariance()
-            xs = pylab.linspace(0,1,1000)
-            pylab.plot(xs,density(xs), colors[k], label=k)
+            xs = pylab.linspace(0, 1, 1000)
+            pylab.plot(xs, density(xs), colors[k], label=k)
         pylab.legend()
         pylab.xlim([0, 1])
         pylab.xlabel('Book locations (in %)')
@@ -230,5 +234,5 @@ def plot_book_stats(book_name, book_len=None, filename='clippings.txt'):
     pylab.show()
 
 if __name__ == '__main__':
-    ## Enter your book name here:
+    # Enter your book name here:
     plot_book_stats('BOOK NAME HERE')
